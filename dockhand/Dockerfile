@@ -25,7 +25,8 @@ COPY --from=dockhand --chown=dockhand:dockhand /home/dockhand /home/dockhand
 
 # Copy rootfs (nginx config, s6 services, cont-init scripts)
 COPY rootfs /
-RUN chmod +x /etc/cont-init.d/*.sh
+RUN chmod +x /etc/cont-init.d/*.sh \
+    && chmod +x /etc/services.d/*/run /etc/services.d/*/finish
 
 ENV DATA_DIR=/data \
     PORT=3000 \
