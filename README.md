@@ -1,7 +1,7 @@
 <p align="center" style="margin-top: 10px; margin-bottom: 10px;">
-  <a href="https://www.home-assistant.io/"><img src="home-assistant-logo.svg" alt="Home Assistant Logo" height="50" style="vertical-align:middle; margin-right:20px;"/></a>
-  <span style="font-size:2.5rem; vertical-align:middle; margin: 0 16px;">+</span>
-  <a href="https://github.com/Finsys/dockhand"><img src="https://github.com/Finsys/dockhand/raw/main/src/images/logo.webp" alt="Dockhand Logo" height="60" style="vertical-align:middle; margin-left:20px;"/></a>
+  <a href="https://www.home-assistant.io/"><img src="home-assistant-logo.svg" alt="Home Assistant Logo" height="60" style="vertical-align:middle; margin-right:20px;"/></a>
+  <span style="font-size:2rem; vertical-align:middle; margin: 0 16px;">➕</span>
+  <a href="https://github.com/Finsys/dockhand"><img src="dockhand-logo.webp" alt="Dockhand Logo" height="60" style="vertical-align:middle; margin-left:20px;"/></a>
 </p>
 
 # Home Assistant Dockhand App
