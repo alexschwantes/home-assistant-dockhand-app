@@ -1,2 +1,0 @@
-network:
-  3000/tcp: Dockhand Web UI (use Ingress instead of direct port access)

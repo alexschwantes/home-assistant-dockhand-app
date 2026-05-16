@@ -9,8 +9,6 @@ arch:
 ingress: true
 panel_icon: mdi:docker
 panel_title: Dockhand
-ports:
-  3000/tcp: null
 devices:
   - /var/run/docker.sock
 hassio_role: admin
