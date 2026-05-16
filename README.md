@@ -1,10 +1,10 @@
+<p align="center" style="margin-top: 10px; margin-bottom: 10px;">
+  <a href="https://www.home-assistant.io/"><img src="home-assistant-logo.svg" alt="Home Assistant Logo" height="50" style="vertical-align:middle; margin-right:20px;"/></a>
+  <span style="font-size:2.5rem; vertical-align:middle; margin: 0 16px;">+</span>
+  <a href="https://github.com/Finsys/dockhand"><img src="https://github.com/Finsys/dockhand/raw/main/src/images/logo.webp" alt="Dockhand Logo" height="60" style="vertical-align:middle; margin-left:20px;"/></a>
+</p>
+
 # Home Assistant Dockhand App
-
-[![](https://img.shields.io/badge/status-experimental-orange?style=for-the-badge)](https://github.com/alexschwantes/home-assistant-dockhand-app)
-
-> **⚠️ Experimental Stage**
->
-> This project is in an **experimental** stage. Features and behavior may change at any time. Use with caution and provide feedback or issues if you encounter problems.
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
@@ -17,6 +17,14 @@ Home Assistant app repository for [Dockhand](https://github.com/Finsys/dockhand)
 This app replaces Portainer in Home Assistant for managing all your docker images with a more modern UI. The main feature it has is that it can be configured to auto prune images so your disk doesn't fill up over time.
 
 # Installation
+
+[![](https://img.shields.io/badge/status-experimental-orange?style=for-the-badge)](https://github.com/alexschwantes/home-assistant-dockhand-app)
+
+> **⚠️ Experimental Stage**
+>
+> This project is in an **experimental** stage. Features and behavior may change at any time. Use with caution and provide feedback or issues if you encounter problems.
+
+---
 
 This will install Dockhand on your Home Assistant and allow you to manage everything from within HASS.
 

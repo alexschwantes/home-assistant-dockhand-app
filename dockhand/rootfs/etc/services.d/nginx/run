@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start nginx (after Dockhand is listening on port 3000)
+# ==============================================================================
+bashio::log.info "Waiting for Dockhand to be ready on port 3000..."
+bashio::net.wait_for 3000 127.0.0.1 60
+
+bashio::log.info "Starting nginx ingress proxy..."
+exec nginx -g "daemon off;"

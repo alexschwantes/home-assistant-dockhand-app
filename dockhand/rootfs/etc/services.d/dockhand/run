@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the Dockhand Node.js service
+# ==============================================================================
+bashio::log.info "Starting Dockhand..."
+
+export DATA_DIR=/data
+export PORT=3000
+export HOST=127.0.0.1
+export NODE_ENV=production
+
+cd /app && exec s6-setuidgid dockhand node /app/server.js
