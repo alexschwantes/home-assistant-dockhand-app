@@ -5,8 +5,6 @@
 bashio::log.info "Waiting for Dockhand to be ready on port 3000..."
 bashio::net.wait_for 3000 127.0.0.1 60
 
-bashio::log.info "Starting nginx ingress proxy..."
-exec s6-setuidgid dockhand /bin/sh -c '
 mkdir -p \
     /tmp/nginx \
     /tmp/nginx/client_temp \
@@ -14,5 +12,6 @@ mkdir -p \
     /tmp/nginx/fastcgi_temp \
     /tmp/nginx/uwsgi_temp \
     /tmp/nginx/scgi_temp
+
+bashio::log.info "Starting nginx ingress proxy..."
 exec nginx -g "daemon off;"
-'
