@@ -9,4 +9,4 @@ export PORT=3000
 export HOST=127.0.0.1
 export NODE_ENV=production
 
-cd /app && exec s6-setuidgid dockhand node /app/server.js
+cd /app && exec node /app/server.js
