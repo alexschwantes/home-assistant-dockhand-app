@@ -3,6 +3,7 @@ version: "1.0.0"
 slug: dockhand
 description: "Modern Docker management UI: a lightweight Portainer alternative."
 url: "https://github.com/Finsys/dockhand"
+image: "ghcr.io/alexschwantes/home-assistant-dockhand-app"
 arch:
   - aarch64
   - amd64
