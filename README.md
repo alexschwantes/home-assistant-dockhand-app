@@ -15,6 +15,9 @@ Home Assistant App repository for [Dockhand](https://github.com/Finsys/dockhand)
 
 This app replaces Portainer in Home Assistant for managing all your docker images with a more modern UI. One great feature is that it can be configured to auto prune images so your disk doesn't fill up over time.
 
+![Dockhand Containers in Home Assistant](https://github.com/user-attachments/assets/883cb7bb-bae2-4799-8469-38a75976bc94)
+![Dockhand Containers in Home Assistant](https://github.com/user-attachments/assets/e8405ec3-55e6-4f6a-9f6e-f5f6f61f5e3e)
+
 ## Installation
 
 This will install Dockhand on your Home Assistant and allow you to manage everything from within HASS.
