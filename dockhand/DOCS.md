@@ -2,52 +2,45 @@
 
 ## Installation
 
-1. Add this repository to your Home Assistant instance via **Settings → Apps → Install app → ⋮ → Repositories**.
-2. Find **Dockhand** in the App store and click **Install**.
-3. Wait for the image to download and build.
+1. Add this repository to your Home Assistant instance via **Settings -> Apps -> Install app -> ⋮ -> Repositories**.
+1. Click **+ Add** and paste the repository URL https://github.com/alexschwantes/home-assistant-dockhand-app into the field and click **Add**
+1. Find **Dockhand** in the App store and click **Install**.
 
-## Disabling Protection Mode
+## Running Dockhand App
 
-Dockhand requires access to the Docker socket (`/var/run/docker.sock`) to manage containers.
-Home Assistant's "Protection Mode" blocks this by default.
-
-**You must disable Protection Mode before starting the app:**
-
-1. Go to **Settings → Apps → Dockhand**.
-2. Scroll down to the **Protection Mode** toggle.
-3. Switch it **off**.
-4. A warning will appear — confirm you understand the security implications.
-5. Click **Start** to start Dockhand.
+> **⚠️ Protection Mode must be disabled**
+>
+> Dockhand requires direct access to the Docker socket (`/var/run/docker.sock`).
+> You **must disable "Protection Mode"** in the app settings before starting Dockhand.
+> Go to **Settings → Apps → Dockhand** and toggle off "Protection Mode".
+> Failure to do so will prevent the app from starting.
 
 > **Security note:** Disabling Protection Mode grants the container full access to the Docker
 > daemon. This is the same security posture required by Portainer. Only disable if you trust
 > the workload running in this container.
 
-## Starting the App
-
-After disabling Protection Mode, click **Start** on the Dockhand app page.
-
-Check the **Log** tab to confirm that:
-
-- The protection check passes
-- Dockhand starts on port 3000
-- nginx ingress proxy starts on port 8099
-
-## Accessing the UI
-
-Once started, a **Dockhand** entry with a Docker icon (`mdi:docker`) will appear in your
-Home Assistant sidebar. Click it to open the Dockhand UI via Ingress — no additional login
-is required.
-
-## Data Persistence
-
 Dockhand stores its SQLite database and application data in the `/data` directory, which is
 mapped to persistent Home Assistant storage. Your data survives app restarts and updates.
 
-## Ports
+## Accessing Dockhand
 
-Direct port access on `3000/tcp` is disabled. All access is via the HA Ingress proxy on
-port 8099. This means Dockhand is only reachable through your Home Assistant instance.
+Dockhand can be accessed via the Dockhand App page, or you can enable the app setting to "Show in sidebar" which will add a new menu to the sidebar:
+
+<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/6.x/svgs/brands/docker.svg" width="20" height="20">&nbsp;&nbsp;&nbsp;**Dockhand**
+
+Direct access to Dockhand outside of Home Assistance is disabled.
+
+> **Note:** Direct access to Dockhand outside of Home Assistance is disabled.
+
+## First Use / Configuration
+
+You first need to add the local Home Assistant Environment:
+
+1. From the Dockhand Dashboard click go to settings
+1. Click **+ Add environment**
+1. Enter a **name** and click **+ Add**
+
+> **Worthwhile setting:** Under the **Updates** tab for the environment, enable **automatic image pruning**. This will schedule a clean up of old images to prevent Home Assistant running out of space.
 
 ## Troubleshooting
 
@@ -64,26 +57,8 @@ port 8099. This means Dockhand is only reachable through your Home Assistant ins
 
 ## Known Issues
 
-- **First page load after install/start can be slow**:
-  The first Dockhand UI load after a fresh install or app restart can take several seconds (for example around 5s) while server-side components warm up.
-
-    Subsequent page loads are typically much faster.
-
-    Treat it as actionable if slow loads continue on every request, or if requests time out
-    repeatedly after the initial warm-up.
-
 - **Ingress stream disconnect noise when navigating between pages**:
-  In some Home Assistant installations, long-lived API stream requests can log transient
-  disconnects when a page is closed, refreshed, or changed.
+  Long-lived API stream requests can log transient disconnects when a page is closed, refreshed, or changed. This results in the following Supervisor Logs:
+    - `Stream error with http://<addon-ip>:8099/api/...: Cannot write to closing transport`
 
-    You may see one or more of the following:
-    - Browser DevTools: `(failed) net::ERR_FAILED` for endpoints such as `/api/events` or
-      `/api/*/stream`
-    - Supervisor logs:
-      `Stream error with http://<addon-ip>:8099/api/...: Cannot write to closing transport`
-
-    This is usually benign if the UI remains responsive and streams reconnect when returning
-    to the page.
-
-    Treat it as actionable only if streams do not reconnect, live data stops updating, or the
-    UI becomes unresponsive.
+    This is benign as the UI remains responsive and streams reconnect when returning to the page.

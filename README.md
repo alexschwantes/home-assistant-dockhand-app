@@ -8,41 +8,72 @@
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
-
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
-Home Assistant app repository for [Dockhand](https://github.com/Finsys/dockhand) - a modern, lightweight Docker management UI.
+Home Assistant App repository for [Dockhand](https://github.com/Finsys/dockhand) - a modern, lightweight Docker management UI - a streamlined alternative to Portainer. Manage your containers, images, volumes, and networks directly from your Home Assistant sidebar.
 
-This app replaces Portainer in Home Assistant for managing all your docker images with a more modern UI. The main feature it has is that it can be configured to auto prune images so your disk doesn't fill up over time.
+This app replaces Portainer in Home Assistant for managing all your docker images with a more modern UI. One great feature is that it can be configured to auto prune images so your disk doesn't fill up over time.
 
-# Installation
+## Installation
 
 This will install Dockhand on your Home Assistant and allow you to manage everything from within HASS.
 
-## Automatic Install
+### Automatic Install
 
-1.  Automatic: click link to add to your home assistance
+1.  Click the link below to automatically add repository for Dockhand
 
     [![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?repository_url=https%3A%2F%2Fgithub.com%2Falexschwantes%2Fhome-assistant-dockhand-app&addon=469b7386_dockhand)
 
 1.  Click `Install` to install Dockhand App
 
-## Manual Install
+### Manual Install
 
-1. Open Home Assistant
-1. Go to Settings -> Apps -> Install app
-1. Click the three dots in the top-right corner and select Repositories
-1. Click Add and paste the repository URL https://github.com/alexschwantes/home-assistant-dockhand-app into the field and click "Add"
-1. Search for `Dockhand` in the apps and click install
+1. Add this repository to your Home Assistant instance via **Settings -> Apps -> Install app -> ⋮ -> Repositories**.
+1. Click **+ Add** and paste the repository URL https://github.com/alexschwantes/home-assistant-dockhand-app into the field and click **Add**
+1. Find **Dockhand** in the App store and click **Install**.
 
-# Configuration
+## Running Dockhand App
 
-None yet.
+> **⚠️ Protection Mode must be disabled**
+>
+> Dockhand requires direct access to the Docker socket (`/var/run/docker.sock`).
+> You **must disable "Protection Mode"** in the app settings before starting Dockhand.
+> Go to **Settings → Apps → Dockhand** and toggle off "Protection Mode".
+> Failure to do so will prevent the app from starting.
 
-# Release Process
+> **Security note:** Disabling Protection Mode grants the container full access to the Docker
+> daemon. This is the same security posture required by Portainer. Only disable if you trust
+> the workload running in this container.
 
-See [RELEASE.md](RELEASE.md) for the release strategy, automation options, and the recommended workflow.
+Dockhand stores its SQLite database and application data in the `/data` directory, which is
+mapped to persistent Home Assistant storage. Your data survives app restarts and updates.
+
+## Accessing Dockhand
+
+Dockhand can be accessed via the Dockhand App page, or you can enable the app setting to "Show in sidebar" which will add a new menu to the sidebar:
+
+<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/6.x/svgs/brands/docker.svg" width="20" height="20">&nbsp;&nbsp;&nbsp;**Dockhand**
+
+> **Note:** Direct access to Dockhand outside of Home Assistance is disabled.
+
+## First Use / Configuration
+
+You first need to add the local Home Assistant Environment:
+
+1. From the Dockhand Dashboard click go to settings
+1. Click **+ Add environment**
+1. Enter a **name** and click **+ Add**
+
+> **Worthwhile setting:** Under the **Updates** tab for the environment, enable **automatic image pruning**. This will schedule a clean up of old images to prevent Home Assistant running out of space.
+
+## Known Issues
+
+- **Ingress stream disconnect noise when navigating between pages**:
+  Long-lived API stream requests can log transient disconnects when a page is closed, refreshed, or changed. This results in the following Supervisor Logs:
+    - `Stream error with http://<addon-ip>:8099/api/...: Cannot write to closing transport`
+
+    This is benign as the UI remains responsive and streams reconnect when returning to the page.
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
