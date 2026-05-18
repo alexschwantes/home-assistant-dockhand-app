@@ -59,6 +59,20 @@
         "panel": "new"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Deploy to Real HA (tar over SSH)",
+      "type": "shell",
+      "command": "tar czf - -C /mnt/supervisor/addons/local/home-assistant-dockhand-app --exclude='.git' . | ssh root@${input:haHost} \"tar xzf - -C /addons/local/home-assistant-dockhand-app\" && ssh root@${input:haHost} \"ha apps rebuild --force local_dockhand && ha apps start local_dockhand && ha apps logs -f local_dockhand\"",
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
@@ -69,6 +83,12 @@
       "options": [
         "dockhand",
       ]
+    },
+    {
+      "id": "haHost",
+      "type": "promptString",
+      "description": "Hostname or IP of the real HA instance",
+      "default": "homeassistant.local"
     }
   ]
 }
