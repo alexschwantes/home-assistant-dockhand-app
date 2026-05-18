@@ -1,8 +1,8 @@
 # Stage 1 — extract Dockhand artifacts
-FROM fnsys/dockhand:latest AS dockhand
+FROM fnsys/dockhand:v1.0.29 AS dockhand
 
 # Stage 2 — HA Debian base (glibc, s6-overlay, bashio)
-FROM ghcr.io/home-assistant/base-debian:latest
+FROM ghcr.io/home-assistant/base-debian:trixie-2026.04.0
 
 # Install nginx, docker-cli, and Node.js 24 (NodeSource)
 RUN apt-get update \
