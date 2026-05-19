@@ -8,6 +8,10 @@ For release automation options and the recommended workflow, see [RELEASE.md](RE
 
 The devcontainer includes a local HA supervisor instance. Use VS Code tasks (`.vscode/tasks.json`) for the standard iteration cycle:
 
+> **⚠️ Important:** If you want to guarantee Home Assistant builds from your local `Dockerfile` source while iterating, temporarily comment `image:` in `dockhand/config.yaml`.
+>
+> With `image:` present, Supervisor may use registry image flows in some install/update paths, which can make local changes appear to be ignored.
+
 ```bash
 # Full rebuild from source + start + tail logs
 ha apps rebuild --force "local_dockhand"; ha apps start "local_dockhand"; ha apps logs -f "local_dockhand"
@@ -32,6 +36,8 @@ Three options for deploying a locally-built image to a real HA instance:
 Best for: one-off testing, no network setup, HA OS or Supervised installs.
 
 The HA supervisor builds the image on the HA host from the Dockerfile — same as local dev but under real security constraints.
+
+> **⚠️ Important:** For predictable source-based behavior in this option, comment `image:` while testing local changes, then restore it before release.
 
 > Note: `rsync` is not installed on HA OS. Use `scp`, tar-over-SSH, or Samba instead.
 

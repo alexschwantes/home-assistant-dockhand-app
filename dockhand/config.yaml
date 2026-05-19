@@ -3,6 +3,7 @@ version: "1.0.1"
 slug: dockhand
 description: "Modern Docker management UI: a lightweight Portainer alternative."
 url: "https://github.com/Finsys/dockhand"
+# NOTE: When developing, uncomment image to force local build instead of using pre-built image from GitHub Container Registry.
 image: "ghcr.io/alexschwantes/home-assistant-dockhand-app"
 arch:
   - aarch64
