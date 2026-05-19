@@ -72,8 +72,13 @@ You first need to add the local Home Assistant Environment:
 
 ## Known Issues
 
-- **Ingress stream disconnect noise when navigating between pages**:
-  Long-lived API stream requests can log transient disconnects when a page is closed, refreshed, or changed. This results in the following Supervisor Logs:
+- **MINOR: Need to manually refresh page after enabling Dockhand authentication:**
+
+    Should you wish to enable user authentication within Dockhand, you are not immediately redirected to the login page. You will need to refresh the page to see the Dockhand login screen. This only happens the first time when enabling authentication.
+
+- **MINOR: Ingress stream disconnect noise when navigating between pages**:
+
+    Long-lived API stream requests can log transient disconnects when a page is closed, refreshed, or changed. This results in the following Supervisor Logs:
     - `Stream error with http://<addon-ip>:8099/api/...: Cannot write to closing transport`
 
     This is benign as the UI remains responsive and streams reconnect when returning to the page.
